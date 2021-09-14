@@ -1,0 +1,138 @@
+﻿@model ML.Usuario
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Usuarios</h2>
+
+<div class="row">
+    @using (Html.BeginForm("GetAll", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="row">
+            @*<div class="form-inline col-md-4 hidden">
+                    @Html.LabelFor(model => model.Semestre.IdSemestre)
+                    @Html.DropDownListFor(model => model.Semestre.IdSemestre, new SelectList(Model.Semestre.Semestres, "IdSemestre", "Nombre"), "Selecciona una opción", new { @class = "form-control", @style="width: 260px;" })
+                </div>*@
+
+            @*<div class="@(ViewBag.BusquedaAbiertaActiva)? True: "hidden": ""  ">*@
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Nombre" })
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @placeholder = "Apellido Paterno" })
+                @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @placeholder = "Apellido Materno" })
+                @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+            </div>
+            @*</div>*@
+
+
+            <div class="col-md-1">
+                <input type="submit" value="Buscar" class="btn btn-info" />
+            </div>
+
+            @*<div class="col-md-1 @(ViewBag.BusquedaAbiertaActiva=="")? True: " hidden" "" "">*@
+            @*URL Action  método -ViewBag, Bandera BusquedaAbiertaActiva      *@
+            @*<input type="submit" value="Busqueda abierta" class="btn btn-info" />*@
+            <div class="col-md-1">
+                @*URL Action  método -ViewBag, Bandera BusquedaAbiertaDesactivar      *@
+                <input type="submit" value="Cancelar" class="btn btn-danger" />
+            </div>
+        </div>
+
+        <br />
+
+
+        <div class="row">
+
+        </div>
+
+
+
+        <br />
+    }
+
+</div>
+
+<div class="container">
+    <div class="row">
+
+
+        <div style="float:right; margin-bottom:1rem;">
+            @Html.ActionLink("+", "Form", "Usuario", htmlAttributes: new { @class = "btn btn-success btn-lg" })
+        </div>
+        <div style="float:left; margin-bottom:1rem;">
+            <input type="file" value="Cargar Archvio" />
+            <a href="@Url.Action("ListaUP", "Usuario")">
+                <input type="submit" value="Guardar" class="btn-success" />
+            </a>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Editar</td>
+                    <td class="hidden">IdUsuario</td>
+                    <td>Email</td>
+                    <td>Nombre</td>
+                    <td>Apellido Paterno</td>
+                    <td>Apellido Materno</td>
+                    <td>Fecha de Nacimiento</td>
+                    <td>Sexo</td>
+                    <td>Status</td>
+                    <td>Rol</td>
+                    <td>Telefono</td>
+                    <td>Txt</td>
+                    <td>XML</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Usuario usuario in Model.Usuarios)
+                {
+                    <tr>
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Usuario", new { IdUsuario = usuario.IdUsuario })"></a></td>
+                        <td class="hidden">@usuario.IdUsuario</td>
+                        <td class="text-center">@usuario.Email</td>
+                        <td class="text-center">@usuario.Nombre</td>
+                        <td class="text-center">@usuario.ApellidoPaterno</td>
+                        <td class="text-center">@usuario.ApellidoMaterno</td>
+                        <td class="text-center">@usuario.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                        <td class="text-center">@usuario.Sexo</td>
+                        @if (usuario.Status == true)
+                        {
+                            <td class="text-center">
+                                <a href="@Url.Action("UpdateStatus", "Usuario", new { IdUsuario = @usuario.IdUsuario })">
+                                    <img alt="Submit" src="~/Content/toggle-on.jpg" style=" height:50px; width:75px;" />
+                                </a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-center">
+                                <a href="@Url.Action("UpdateStatus", "Usuario", new { IdUsuario = @usuario.IdUsuario })">
+                                    <img src="~/Content/toggle-off.jpg" style=" height:50px; width:75px;" />
+                                </a>
+                            </td>
+                        }
+                        <td class="text-center">@usuario.Rol.Nombre</td>
+                        <td class="text-center">@usuario.Telefono</td>
+                        <td class="text-center btn">
+                            <a href="@Url.Action("TxtDownload", "Usuario", new { IdUsuario = @usuario.IdUsuario })">Descargar</a>
+                        </td>      
+                        <td class="text-center btn">
+                            <a href="@Url.Action("XMLDownload", "Usuario", new { IdUsuario = @usuario.IdUsuario })">Descargar</a>
+                        </td>                                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>

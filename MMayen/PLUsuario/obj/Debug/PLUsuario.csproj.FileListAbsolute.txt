@@ -1,0 +1,14 @@
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\PLUsuario.exe.config
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\PLUsuario.exe
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\PLUsuario.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\BL.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\ML.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\DL.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\EntityFramework.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\BL.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\ML.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\DL.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\bin\Debug\EntityFramework.xml
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\obj\Debug\PLUsuario.csprojResolveAssemblyReference.cache
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\obj\Debug\PLUsuario.exe
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\PLUsuario\obj\Debug\PLUsuario.pdb

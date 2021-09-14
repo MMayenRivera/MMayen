@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MMayenDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.fk_Usu_Rol" FromRole="Rol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="IdRol" Type="Byte" />
+    <Property Name="Telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Rol" Relationship="Self.fk_Usu_Rol" FromRole="Usuario" ToRole="Rol" />
+  </EntityType>
+  <Association Name="fk_Usu_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MMayenDataBaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Rols" EntityType="Self.Rol" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="fk_Usu_Rol" Association="Self.fk_Usu_Rol">
+      <End Role="Rol" EntitySet="Rols" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <FunctionImport Name="RolAdd">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RolGetAll" ReturnType="Collection(MMayenDataBaseModel.RolGetAll_Result)" />
+    <FunctionImport Name="UsuarioGetAll" ReturnType="Collection(MMayenDataBaseModel.UsuarioGetAll_Result)" />
+    <FunctionImport Name="UsuarioGetById" ReturnType="Collection(MMayenDataBaseModel.UsuarioGetById_Result)">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioUpdate">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="Sexo" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+      <Parameter Name="IdRol" Mode="In" Type="Byte" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioGetAllTest" ReturnType="Collection(MMayenDataBaseModel.UsuarioGetAllTest_Result)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioAdd" ReturnType="Collection(String)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="ApellidoPaterno" Mode="In" Type="String" />
+      <Parameter Name="ApellidoMaterno" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="Sexo" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+      <Parameter Name="IdRol" Mode="In" Type="Byte" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UsuarioGetByUserName" ReturnType="Collection(MMayenDataBaseModel.UsuarioGetByUserName_Result)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="RolGetAll_Result">
+    <Property Type="Byte" Name="IdRol" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UsuarioGetAll_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="false" />
+    <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+    <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="11" />
+  </ComplexType>
+  <ComplexType Name="UsuarioGetById_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="false" />
+    <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+    <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="30" />
+    <Property Type="Byte" Name="IdRol" Nullable="false" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="11" />
+  </ComplexType>
+  <ComplexType Name="UsuarioGetAllTest_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="false" />
+    <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+    <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="11" />
+  </ComplexType>
+  <ComplexType Name="UsuarioGetByUserName_Result">
+    <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+    <Property Type="String" Name="UsuarioNombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ApellidoMaterno" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="false" />
+    <Property Type="Byte" Name="IdRol" Nullable="true" />
+    <Property Type="String" Name="RolNombre" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="11" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,14 @@
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\BL.dll.config
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\BL.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\BL.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\DL.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\EntityFramework.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\ML.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\DL.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\ML.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\EntityFramework.xml
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\obj\Debug\BL.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\BL\obj\Debug\BL.pdb

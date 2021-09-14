@@ -1,0 +1,5 @@
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\ML\bin\Debug\ML.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\ML\bin\Debug\ML.pdb
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\ML\obj\Debug\ML.csprojResolveAssemblyReference.cache
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\ML\obj\Debug\ML.dll
+C:\Users\digis\Documents\MisaelMayenRivera\MMayen\ML\obj\Debug\ML.pdb

@@ -1,0 +1,7 @@
+ejemplo@gmail.com|Pedro|Martinez|Lopez|pass@word|M|true|1|5534451898
+correo@gmail.com|Silvia|Gonzales|Fernandez|contra123|F|true|1|5564891572
+prueba@yahoo.com|Ingrid|Rivera|Perez|hola123|F|true|1|5564852198
+hola@hotmail.com|Mario|Bermudes|Costa|contrapass|M|true|1|5987412368
+pueba@ejemplo.com|Jose|Hernandez|Flores|secreto12|M|true|1|1248567895
+
+

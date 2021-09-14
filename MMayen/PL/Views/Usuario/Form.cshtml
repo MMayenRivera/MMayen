@@ -1,0 +1,263 @@
+﻿@model ML.Usuario
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="// code.jquery.com/jquery-1.9.1.js"></script>
+<script src="// code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<Link rel = "stylesheet" href = "http://jqueryui.com/resources/demos/style.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<h2>Formulario de Usuario</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Usuario</h5>
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Usuarios, new { @class = "hidden" })
+                            @Html.TextBoxFor(model => model.IdUsuario, new { @class = "form-control hidden" })
+                            @Html.ValidationMessageFor(model => model.IdUsuario)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Email)
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id="txtEmail", @onkeyup = "return VerifyEmail();" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                            <span id="lblEmail" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Password)
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "txtpassword" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="borderconfirmpassword" class="col-md-3">
+                            @Html.Label("Escribe de nuevo la contraseña")
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @id = "txtconfirmpassword", @onblur = "PasswordCheck()" })
+                            <span id="lblpass" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Nombre)
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(event)" })
+                            @Html.ValidationMessageFor(model => model.Nombre)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ApellidoPaterno)
+                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @onkeypress = "return SoloLetras(event)" })
+                            @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ApellidoMaterno)
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @onkeypress = "return SoloLetras(event)" })
+                            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FechaNacimiento)
+                            @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control", @id = "datepicker" })
+                        </div>
+                    </div>
+                   
+
+
+                    <div>
+                        @Html.Label("Marculino")
+                        @Html.RadioButtonFor(model => model.Sexo, "M") 
+                        @Html.Label("Femenino")
+                        @Html.RadioButtonFor(model => model.Sexo, "F") 
+                    </div>
+             
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Telefono)
+                            @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @id = "txtTelefono", @onkeypress = "return SoloNumeros(event)" })
+                            @Html.ValidationMessageFor(model => model.Telefono)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.Rol.IdRol, new SelectList(Model.Rol.Roles, "IdRol", "Nombre")
+                            ,"Selecciona un Rol", htmlAttributes: new { id = "usuario.rol.idrol", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <input type="submit" onclick="return Validation(Event)" value="Guardar" class="btn btn-success" />
+                            @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+             </div>
+        </div>
+
+
+    <script type="text/javascript">
+        var j = jQuery.noConflict();
+        j(function () {
+            j("#datepicker").datepicker(
+               {
+                   dateFormat: 'dd-mm-yy',
+                   changeMonth: true,
+                   changeYear: true
+               });
+            $(".ui-datepicker-trigger").css("width", "30px")
+            $(".ui-datepicker-trigger").css("height", "30px")
+        });
+</script>
+
+<script type="text/javascript">
+    function SoloLetras(e) {
+        var key = e.keyCode || e.which;
+        var letra = String.fromCharCode(key).toLowerCase();
+        var caracter = e.key;
+        if (!/^[a-zA-Z]*$/g.test(letra)) {
+            alert("Solo se aceptan letras");
+            return false;
+
+        }
+        else {
+            return true;
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function SoloNumeros(e) {
+        var key = e.keyCode || e.which;
+        var numero = String.fromCharCode(key).toLowerCase();
+        var caracter = e.key;
+        if (!/^[0-9]*$/g.test(numero)) {
+            alert("Solo se aceptan numeros");
+            return false;
+
+        }
+        else {
+            return true;
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function VerifyEmail() {
+        var emailv = document.getElementById("txtEmail").value;
+        var lblError = document.getElementById("lblEmail");
+        var expr = /^\w+([\.\+\-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+        lblError.innerHTML = "";
+        if (!expr.test(emailv))
+        {
+            lblError.innerHTML = "La direccion es incorrecta.";
+            return false;
+        }
+        else
+        {
+            lblError.innerHTML = "";
+            return true;
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function PasswordCheck() {
+        var passw = document.getElementById("txtpassword");
+        var confpass = document.getElementById("txtconfirmpassword");
+        var lblpass = document.getElementById("lblpass");
+        lblpass.innerHTML = "";
+        if (confpass.value != passw.value)
+        {
+            passw.style.borderColor = "red";
+            confpass.style.borderColor = "red";
+            lblpass.innerHTML = "Las contraseñas no coinciden";
+            return false;
+        }
+        else
+        {
+            passw.style.borderColor = "green";
+            confpass.style.borderColor = "green";
+            lblpass.innerHTML = "";
+            return true;
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    function Validation() {
+        PasswordCheck();
+        VerifyEmail();
+        var email = document.getElementById("txtEmail");
+        var nombre = document.getElementById("txtNombre");
+        var ApellidoPaterno = document.getElementById("txtApellidoPaterno");
+        var ApellidoMaterno = document.getElementById("txtApellidoMaterno");
+        var Telefono = document.getElementById("txtTelefono");
+
+        if (PasswordCheck==false)
+        {
+            alert("El password esta vacio o es incorrecto");
+            return false;
+        }
+        if(VerifyEmail == false)
+        {
+            alert("El email esta vacio o es incorrecto");
+            return false;
+        }
+        if(nombre.Value =="")
+        {
+            alert("El nombre esta vacio");
+            return false;
+        }
+        if (ApellidoPaterno.Value == "") {
+            alert("El Apellido paterno esta vacio");
+            return false;
+        }
+        if (ApellidoMaterno.Value == "") {
+            alert("El Apellido Materno esta vacio");
+            return false;
+        }
+        if (Telefono.Value == "") {
+            alert("El telefono esta vacio");
+            return false;
+        }
+        
+        return true;
+    }
+</script>
+
+
+
+
+
+
+
